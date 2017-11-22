@@ -32,6 +32,7 @@ import java.util.Locale;
 import cey.training.personal.android_iot.smarthome.DevicesHandler;
 import cey.training.personal.android_iot.smarthome.SmartHome;
 import cey.training.personal.android_iot.smarthome.SmartHomeState;
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 //TODO change level of exceptions handling, that leads to BLUETOOTH_OFF state
 //TODO check new device connections
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         log("App exit");
         myHome.exit();
     }
@@ -298,7 +300,28 @@ public class MainActivity extends AppCompatActivity
                 setupModeListView();
             }
         });
-//        Button modeSelectButton =
+        final AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, 0xff000000, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                // color is the color selected by the user.
+                log("selected color: "+color);
+            }
+
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+                // cancel was selected by the user
+            }
+        });
+        Button colorButton = (Button) findViewById(R.id.color_button);
+        colorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v1) {
+                // initialColor is the initially-selected color to be shown in the rectangle on the left of the arrow.
+// for example, 0xff000000 is black, 0xff0000ff is blue. Please be aware of the initial 0xff which is the alpha.
+
+            dialog.show();
+            }
+        });
     }
 
     private void setupMessageView() {
