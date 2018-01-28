@@ -59,7 +59,7 @@
             android:id="@+id/color_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/disconnect_button"
+            android:layout_toEndOf="@+id/mode_button"
             android:text="@string/colors"/>
 
     </RelativeLayout>
