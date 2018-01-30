@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ModeBoxAdapter extends BaseAdapter {
-    Context ctx;
-    LayoutInflater lInflater;
-    ArrayList<ModeView> objects;
+    private Context ctx;
+    private LayoutInflater lInflater;
+    private ArrayList<ModeView> objects;
 
     ModeBoxAdapter(Context context, ArrayList<ModeView> devices) {
         ctx = context;
