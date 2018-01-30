@@ -1,5 +1,6 @@
 package cey.training.personal.android_iot.smarthome.network;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -34,9 +35,10 @@ public class BluetoothSetup extends AsyncTask<Void, String[], Void> {
     private static final int MY_REQUEST_CODE = 3525;
 
     private SmartHome parent;
+    @SuppressLint("StaticFieldLeak")
     private Activity activity;
 
-    SmartHomeState state;
+    private SmartHomeState state;
     private BluetoothAdapter adapter;
     private Vector<BluetoothDevice> foundDevices;
     private BroadcastReceiver receiver;

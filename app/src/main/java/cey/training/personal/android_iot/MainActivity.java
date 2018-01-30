@@ -117,12 +117,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
     }
 
     @Override
@@ -382,12 +382,22 @@ public class MainActivity extends AppCompatActivity
                         "Position: " + Integer.toString(position));
 //                        if (!isDeviceConnected)
 //                            myHome.chooseDevice(position);
-                myHome.setMessage(Integer.toString(position));
+                myHome.setMessage("#0:"+Integer.toString(position)+"@");
             }
         });
         for (int i = 0; i < names.length; i++)
             modeViews.add(new ModeView(i, Integer.toString(i)+") "+names[i]));
         boxAdapterMode.notifyDataSetChanged();
+    }
+
+    private String prepareSendData(String ... inData){
+        log("getted "+inData.length+ " params");
+        String data="";
+        for (int i=0; i< inData.length; i++){
+            log ("["+i+"] "+inData[i]);
+        }
+
+        return data;
     }
 
     private void setupBluetooth() {

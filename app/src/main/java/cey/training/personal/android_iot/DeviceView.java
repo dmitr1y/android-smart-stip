@@ -32,18 +32,14 @@ public class DeviceView {
         //default
         image=R.drawable.ic_new_device;
         if (state.equals("BONDED")){
-            //// TODO: 27.12.16 image bonded
             image=R.drawable.ic_bonded_device;
         }
         if (state.equals("CONNECTED")){
-            //// TODO: 27.12.16 image connected
             image=R.drawable.ic_connected_device;
         }
         if (state.equals("NEW")||state.equals("unknown")){
-            //// TODO: 27.12.16 image New
             image=R.drawable.ic_new_device;
         }
-       // image = _image;
         address=_address;
         //Log.d("DeviceView","created item: "+ name+", "+address+ ", "+state);//TODO rewrite with listener
     }

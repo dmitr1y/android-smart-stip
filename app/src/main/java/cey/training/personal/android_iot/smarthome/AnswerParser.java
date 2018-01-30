@@ -1,5 +1,7 @@
 package cey.training.personal.android_iot.smarthome;
 
+import android.util.Log;
+
 import cey.training.personal.android_iot.database.VarOfMK;
 
 /**
@@ -27,17 +29,13 @@ public final class AnswerParser {
      * @return parsed String.
      */
     public static String answerToString(String message) {
-        //ArrayList<String> result=new ArrayList<>();
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         if (message.length() > 0) {
-            message = message.replaceAll("=", ": ");
-            message = message.replaceAll("input", "Температура");
-            String[] valueArr = message.split("#");
-            for(int valueCount = 1; valueCount < valueArr.length - 1; ++valueCount){
-                result.append(valueArr[valueCount]);
-                result.append("\n");
+            message=message.replaceAll("@","");
+            String[] parsedStr = message.split("#");
+            for (int i=0;i<parsedStr.length;i++){
+                Log.i("PARSER", "answerToString: "+parsedStr[i]);
             }
-            result.append(valueArr[valueArr.length - 1]);
         }
         return result.toString();
     }

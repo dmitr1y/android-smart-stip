@@ -13,10 +13,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by Ника on 23.08.2017.
- */
-
 public class ModeBoxAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
