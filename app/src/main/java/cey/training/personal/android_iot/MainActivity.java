@@ -17,7 +17,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         DevicesHandler {
     private static final String TAG = "SmartHomeApp";
 
-    LedState ledState;
+    ArduinoState arduinoState;
     SmartHome myHome;
     private boolean isDeviceConnected;
 
@@ -56,20 +55,17 @@ public class MainActivity extends AppCompatActivity
     private int MY_PERMISSION_REQUEST_CONSTANT = 3526;
 
     //--Getters and setters--
-    public LedState getLedState() {
-        return ledState;
+    public ArduinoState getArduinoState() {
+        return arduinoState;
     }
 
-    public void setLedState(LedState ledState) {
-        this.ledState = ledState;
-        log("Current state is set to " + ledState.toString());
+    public void setArduinoState(ArduinoState arduinoState) {
+        this.arduinoState = arduinoState;
+        log("Current state is set to " + arduinoState.toString());
         String buttonText;
-        switch (ledState) {
-            case OFF:
+        switch (arduinoState) {
+            case SYS_VOL:
                 buttonText = "Turn on";
-                break;
-            case ON:
-                buttonText = "Turn off";
                 break;
             default:
                 buttonText = "Stub";
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity
 
         setupMyObjects();
 
-        setLedState(LedState.OFF);
+//        setArduinoState(ArduinoState.OFF);
     }
 
     @Override
@@ -266,21 +262,21 @@ public class MainActivity extends AppCompatActivity
         buttonPanel = (RelativeLayout) findViewById(R.id.button_panel);
 
         switchButton = (Button) findViewById(R.id.switch_button);
-        switchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                log("Button clicked");
-                switch (getLedState()) {
-                    case OFF:
-                        setLedState(LedState.ON);
-                        break;
-                    case ON:
-                        setLedState(LedState.OFF);
-                        break;
-                }
-                sendLedState();
-            }
-        });
+//        switchButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                log("Button clicked");
+//                switch (getArduinoState()) {
+//                    case OFF:
+//                        setArduinoState(ArduinoState.ON);
+//                        break;
+//                    case ON:
+//                        setArduinoState(ArduinoState.OFF);
+//                        break;
+//                }
+//                sendLedState();
+//            }
+//        });
 
         Button disconnectButton = (Button) findViewById(R.id.disconnect_button);
         disconnectButton.setOnClickListener(new View.OnClickListener() {
@@ -410,7 +406,7 @@ public class MainActivity extends AppCompatActivity
 
     void sendLedState() {
         if (myHome != null) {
-            String toSend = Integer.toString(getLedState().ordinal());
+            String toSend = Integer.toString(getArduinoState().ordinal());
             log("Send " + toSend + " to LED");
             myHome.setMessage(toSend);
         }

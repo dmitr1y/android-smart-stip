@@ -27,7 +27,7 @@ public class SmartHome {
     private Activity activity;
     private BluetoothSetup setup;
     private OutputStream outputStream;
-    private ReportPDF report;
+
 
     //--------------------------Constructors--------------------------------
     public SmartHome(@NonNull Activity activity,
@@ -73,8 +73,6 @@ public class SmartHome {
     //--------------------------end of getters and setters------------------
 
     public void exit() {
-        if (report != null)
-            report.finishReport();
         setState(SmartHomeState.BLUETOOTH_OFF);
     }
 
@@ -110,8 +108,6 @@ public class SmartHome {
                 log("Discover ended MANUALLY");
                 setup.cancelSearch();
             }
-
-//            report = new ReportPDF(this);
 
             log("\nDevice:" + chosenDevice.getName() + "\n" +
                     "Address: " + chosenDevice.getAddress());
